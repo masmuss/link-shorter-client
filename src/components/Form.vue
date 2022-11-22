@@ -15,17 +15,17 @@ export default {
 		})
 
 		onMounted(() => {
-			axios.get('/links').then((response) => {
+			axios.get('/').then((response) => {
 				console.log(response.data)
 			})
 		})
 
 		const submitForm = async () => {
 			await axios
-				.post('/links', {
+				.post('/', {
 					shorted_url: customLink.value
 						? form.shorted_url
-						: randString(5),
+						: randString(),
 					original_url: form.original_url,
 				})
 				.then((response) => {
@@ -74,6 +74,7 @@ export default {
 				class="w-1/2 rounded"
 				placeholder="insert your long url here"
 				v-model="form.original_url"
+				type="url"
 			/>
 			<Button class="bg-slate-800">Shorten!</Button>
 		</div>

@@ -8,20 +8,18 @@ import Heading from '../components/Heading.vue'
 export default {
 	setup() {
 		const link = ref('')
-		const host = 'http://localhost:5173'
+		const host = location.hostname
 
 		onMounted(() => {
 			axios
-				.get(
-					`/links/url/${router.currentRoute.value.params.shorted_url}`,
-				)
+				.get(`/url/${router.currentRoute.value.params.shorted_url}`)
 				.then((response) => {
 					link.value = response.data
 				})
 		})
 
 		const copyLink = () => {
-			console.log(link.value)
+			navigator.clipboard.writeText(`${host}/${link.value.shorted_url}`)
 		}
 
 		return {

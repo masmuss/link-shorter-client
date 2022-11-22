@@ -12,7 +12,7 @@ export default {
 		onMounted(() => {
 			axios
 				.get(
-					`/links/url/${router.currentRoute.value.params.shorted_url}`,
+					`/url/${router.currentRoute.value.params.shorted_url}`,
 				)
 				.then((response) => {
 					link.value = response.data
